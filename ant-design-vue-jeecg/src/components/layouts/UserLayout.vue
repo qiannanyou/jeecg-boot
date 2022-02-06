@@ -4,12 +4,12 @@
       <div class="top">
         <div class="header">
           <a href="/">
-            <img src="~@/assets/logo.svg" class="logo" alt="logo">
-            <span class="title">Jeecg Boot</span>
+            <img src="~@/assets/logo.png" class="logo" alt="logo">
+            <span class="title">叁木森管理平台</span>
           </a>
         </div>
         <div class="desc">
-          Jeecg Boot 是中国最具影响力的 企业级 低代码平台
+          博学审问慎思明辨笃行-给我一个机会，我必全力以赴
         </div>
       </div>
 
@@ -22,7 +22,8 @@
           <a href="https://github.com/zhangdaiscott/jeecg-boot/blob/master/LICENSE" target="_blank">条款</a>
         </div>
         <div class="copyright">
-          Copyright &copy; 2019 <a href="http://www.jeecg.com" target="_blank">JEECG开源社区</a> 出品
+          Copyright &copy; 2022 Fujian Sanmusen Network Technology Co.,
+          Ltd.
         </div>
       </div>
     </div>
@@ -31,19 +32,23 @@
 
 <script>
   import RouteView from "@/components/layouts/RouteView"
-  import { mixinDevice } from '@/utils/mixin.js'
+  import {
+    mixinDevice
+  } from '@/utils/mixin.js'
 
   export default {
     name: "UserLayout",
-    components: { RouteView },
+    components: {
+      RouteView
+    },
     mixins: [mixinDevice],
-    data () {
+    data() {
       return {}
     },
-    mounted () {
+    mounted() {
       document.body.classList.add('userLayout')
     },
-    beforeDestroy () {
+    beforeDestroy() {
       document.body.classList.remove('userLayout')
     },
   }
@@ -107,6 +112,7 @@
             top: 2px;
           }
         }
+
         .desc {
           font-size: 14px;
           color: rgba(0, 0, 0, 0.45);
@@ -132,14 +138,17 @@
         .links {
           margin-bottom: 8px;
           font-size: 14px;
+
           a {
             color: rgba(0, 0, 0, 0.45);
             transition: all 0.3s;
+
             &:not(:last-child) {
               margin-right: 40px;
             }
           }
         }
+
         .copyright {
           color: rgba(0, 0, 0, 0.45);
           font-size: 14px;

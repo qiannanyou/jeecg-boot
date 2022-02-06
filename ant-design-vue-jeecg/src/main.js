@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2022-02-01 23:37:13
+ * @LastEditTime: 2022-02-03 11:11:09
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /ant-design-vue-jeecg/src/main.js
+ */
 /** init domain config */
 import './config'
 
@@ -70,7 +78,7 @@ function main() {
   new Vue({
     router,
     store,
-    mounted () {
+    mounted() {
       store.commit('SET_SIDEBAR_TYPE', Vue.ls.get(SIDEBAR_TYPE, true))
       store.commit('TOGGLE_THEME', Vue.ls.get(DEFAULT_THEME, config.navTheme))
       store.commit('TOGGLE_LAYOUT_MODE', Vue.ls.get(DEFAULT_LAYOUT_MODE, config.layout))
@@ -81,7 +89,7 @@ function main() {
       store.commit('TOGGLE_WEAK', Vue.ls.get(DEFAULT_COLOR_WEAK, config.colorWeak))
       store.commit('TOGGLE_COLOR', Vue.ls.get(DEFAULT_COLOR, config.primaryColor))
       store.commit('SET_TOKEN', Vue.ls.get(ACCESS_TOKEN))
-      store.commit('SET_MULTI_PAGE',Vue.ls.get(DEFAULT_MULTI_PAGE,config.multipage))
+      store.commit('SET_MULTI_PAGE', Vue.ls.get(DEFAULT_MULTI_PAGE, config.multipage))
     },
     render: h => h(App)
   }).$mount('#app')

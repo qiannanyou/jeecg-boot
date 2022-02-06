@@ -1,0 +1,593 @@
+.hide {
+  display: none;
+}
+
+/*
+ * 当前项目通用样式
+ */
+
+/*水平居中*/
+.horizon {
+  margin: 0 auto;
+}
+
+/*垂直居底*/
+.vertical-align-bottom {
+  vertical-align: bottom;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+/*外边距
+  Name:			style_margin
+  Example:		class="mt-5|mt-10..."
+  Explain:		.mt表示上边距|.mb表示下边距|.ml表示左边距|.mr表示右边距
+ */
+.mt-5 {
+  margin-top: .05rem;
+}
+
+.mt-10 {
+  margin-top: .1rem;
+}
+
+.mt-15 {
+  margin-top: .15rem;
+}
+
+.mt-20 {
+  margin-top: .2rem;
+}
+
+.mt-25 {
+  margin-top: .25rem;
+}
+
+.mt-30 {
+  margin-top: .3rem;
+}
+
+.mt-35 {
+  margin-top: .35rem;
+}
+
+.mt-40 {
+  margin-top: .4rem;
+}
+
+.mt-50 {
+  margin-top: .5rem;
+}
+
+.mt-60 {
+  margin-top: .6rem;
+}
+
+.mt-100 {
+  margin-top: 1rem;
+}
+
+.mt-105 {
+  margin-top: 1.05rem;
+}
+
+.mt-110 {
+  margin-top: 1.1rem;
+}
+
+.mt-120 {
+  margin-top: 1.2rem;
+}
+
+.mt-125 {
+  margin-top: 1.25rem;
+}
+
+.mb-zero {
+  margin-bottom: 0;
+}
+
+.mb-5 {
+  margin-bottom: .05rem;
+}
+
+.mb-10 {
+  margin-bottom: .1rem;
+}
+
+.mb-15 {
+  margin-bottom: .15rem;
+}
+
+.mb-20 {
+  margin-bottom: .2rem;
+}
+
+.mb-30 {
+  margin-bottom: .3rem;
+}
+
+.mb-35 {
+  margin-bottom: .35rem;
+}
+
+.mb-40 {
+  margin-bottom: 0.4rem;
+}
+
+.mb-50 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-60 {
+  margin-bottom: 0.6rem;
+}
+
+.mb-70 {
+  margin-bottom: .7rem;
+}
+
+.mb-120 {
+  margin-bottom: 1.2rem;
+}
+
+.mb-130 {
+  margin-bottom: 1.3rem;
+}
+
+.mb-140 {
+  margin-bottom: 1.4rem;
+}
+
+.ml-5 {
+  margin-left: 0.05rem;
+}
+
+.ml-10 {
+  margin-left: 0.1rem;
+}
+
+.ml-15 {
+  margin-left: .15rem;
+}
+
+.ml-20 {
+  margin-left: 0.2rem;
+}
+
+.ml-25 {
+  margin-left: 20.05rem;
+}
+
+.ml-30 {
+  margin-left: .3rem;
+}
+
+.ml-40 {
+  margin-left: 0.4rem;
+}
+
+.ml-45 {
+  margin-left: 0.45rem;
+}
+
+.ml-50 {
+  margin-left: 0.5rem;
+}
+
+.ml-55 {
+  margin-left: 0.55rem;
+}
+
+.ml-60 {
+  margin-left: 0.6rem;
+}
+
+.ml-62 {
+  margin-left: 62px;
+}
+
+.ml-65 {
+  margin-left: 60.05rem;
+}
+
+.mr-5 {
+  margin-right: 0.05rem;
+}
+
+.mr-10 {
+  margin-right: 0.1rem;
+}
+
+.mr-15 {
+  margin-right: .15rem;
+}
+
+.mr-20 {
+  margin-right: 0.2rem;
+}
+
+.mr-25 {
+  margin-right: 20.05rem;
+}
+
+.mr-30 {
+  margin-right: .3rem;
+}
+
+.mr-40 {
+  margin-right: 0.4rem;
+}
+
+.mr-50 {
+  margin-right: 0.5rem;
+}
+
+.mr-65 {
+  margin-right: 60.05rem;
+}
+
+/*内填充
+  Name:			style_padding
+  Example:		class="pt-5|pt-10|……"
+  Explain:		.pt表示上填充|.pb表示下填充|.pl表示左填充|.pr表示右填充
+*/
+.pt-5 {
+  padding-top: 0.05rem;
+}
+
+.pt-10 {
+  padding-top: 0.1rem;
+}
+
+.pt-15 {
+  padding-top: .15rem;
+}
+
+.pt-20 {
+  padding-top: 0.2rem;
+}
+
+.pt-25 {
+  padding-top: .25rem;
+}
+
+.pt-30 {
+  padding-top: .3rem;
+}
+
+.pt-50 {
+  padding-top: .5rem;
+}
+
+.pb-5 {
+  padding-bottom: 0.05rem;
+}
+
+.pb-10 {
+  padding-bottom: 0.1rem;
+}
+
+.pb-15 {
+  padding-bottom: .15rem;
+}
+
+.pb-20 {
+  padding-bottom: 0.2rem;
+}
+
+.pb-25 {
+  padding-bottom: .25rem;
+}
+
+.pb-30 {
+  padding-bottom: .3rem;
+}
+
+.pb-50 {
+  padding-bottom: 0.5rem;
+}
+
+.pl-5 {
+  padding-left: 0.05rem;
+}
+
+.pl-10 {
+  padding-left: 0.1rem;
+}
+
+.pl-15 {
+  padding-left: .15rem;
+}
+
+.pl-20 {
+  padding-left: 0.2rem;
+}
+
+.pl-25 {
+  padding-left: .25rem;
+}
+
+.pl-30 {
+  padding-left: .3rem;
+}
+
+.pl-40 {
+  padding-left: 0.4rem;
+}
+
+
+.pr-5 {
+  padding-right: 0.05rem;
+}
+
+.pr-10 {
+  padding-right: 0.1rem;
+}
+
+.pr-15 {
+  padding-right: .15rem;
+}
+
+.pr-20 {
+  padding-right: 0.2rem;
+}
+
+.pr-25 {
+  padding-right: .25rem;
+}
+
+.pr-30 {
+  padding-right: .3rem;
+}
+
+.pd-5 {
+  padding: 0.05rem;
+}
+
+.pd-10 {
+  padding: 0.1rem;
+}
+
+.pd-15 {
+  padding: .15rem;
+}
+
+.pd-20 {
+  padding: 0.2rem;
+}
+
+.pd-25 {
+  padding: .25rem;
+}
+
+.pd-30 {
+  padding: .3rem;
+}
+
+.pd-40 {
+  padding: 0.4rem;
+}
+
+/* ==================
+          字框
+ ==================== */
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+/* ==================
+          文本
+ ==================== */
+.text-6 {
+  font-size: 6px;
+}
+
+.text-11 {
+  -webkit-text-size-adjust: none;
+  font-size: 11px;
+}
+
+.text-12 {
+  font-size: 12px;
+}
+
+.text-14 {
+  font-size: 14px;
+}
+
+.text-xs {
+  font-size: 0.1rem;
+}
+
+.text-sm {
+  font-size: 12px;
+}
+
+.text-df {
+  font-size: 14px;
+}
+
+.text-lg,
+.text-16 {
+  font-size: 16px;
+}
+
+.text-xl {
+  font-size: 18px;
+}
+
+.text-xxl {
+  font-size: 0.2rem;
+}
+
+.text-28 {
+  font-size: 28px;
+}
+
+.text-35 {
+  font-size: .35rem;
+}
+
+.text-sl {
+  font-size: 0.4rem;
+}
+
+.text-xsl {
+  font-size: 0.6rem;
+}
+
+.text-45 {
+  font-size: 0.45rem;
+}
+
+.text-Abc {
+  text-transform: Capitalize;
+}
+
+.text-ABC {
+  text-transform: Uppercase;
+}
+
+.text-abc {
+  text-transform: Lowercase;
+}
+
+.text-cut {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-content {
+  line-height: 1.6;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-red,
+.line-red,
+.lines-red {
+  color: #e54d42;
+}
+
+.text-orange,
+.line-orange,
+.lines-orange {
+  color: #f37b1d;
+}
+
+.text-yellow,
+.line-yellow,
+.lines-yellow {
+  color: #fbbd08;
+}
+
+.text-olive,
+.line-olive,
+.lines-olive {
+  color: #8dc63f;
+}
+
+.text-green,
+.line-green,
+.lines-green {
+  color: #39b54a;
+}
+
+.text-cyan,
+.line-cyan,
+.lines-cyan {
+  color: #1cbbb4;
+}
+
+.text-blue,
+.line-blue,
+.lines-blue {
+  color: #0081ff;
+}
+
+.text-purple,
+.line-purple,
+.lines-purple {
+  color: #6739b6;
+}
+
+.text-mauve,
+.line-mauve,
+.lines-mauve {
+  color: #9c26b0;
+}
+
+.text-pink,
+.line-pink,
+.lines-pink {
+  color: #e03997;
+}
+
+.text-brown,
+.line-brown,
+.lines-brown {
+  color: #a5673f;
+}
+
+.text-grey,
+.line-grey,
+.lines-grey {
+  color: #8799a3;
+}
+
+.text-gray,
+.line-gray,
+.lines-gray {
+  color: #aaa;
+}
+
+.text-black,
+.line-black,
+.lines-black {
+  color: #333;
+}
+
+.text-white,
+.line-white,
+.lines-white {
+  color: #fff;
+}
+
+.borderNone {
+  border: none;
+}
+
+.clearfix:after {
+  content: "020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  /* 触发 hasLayout */
+  zoom: 1;
+}

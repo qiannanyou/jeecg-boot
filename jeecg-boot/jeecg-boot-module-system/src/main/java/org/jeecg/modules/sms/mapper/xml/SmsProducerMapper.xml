@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.sms.mapper.SmsProducerMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="SmsProducerMap" type="org.jeecg.modules.sms.entity.SmsProducer">
+        <id column="producer_id" property="producerId" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="address" property="address" />
+        <result column="type" property="type" />
+        <result column="platform" property="platform" />
+        <result column="status" property="status" />
+        <result column="pay_type" property="payType" />
+        <result column="max_money" property="maxMoney" />
+        <result column="bank" property="bank" />
+        <result column="bank_address" property="bankAddress" />
+        <result column="bank_user" property="bankUser" />
+        <result column="account" property="account" />
+        <result column="before_pay" property="beforePay" />
+        <result column="credit_day" property="creditDay" />
+        <result column="site" property="site" />
+        <result column="is_invoice" property="isInvoice" />
+        <result column="is_free_tax" property="isFreeTax" />
+        <result column="total_price" property="totalPrice" />
+        <result column="delivery_day" property="deliveryDay" />
+        <result column="quality" property="quality" />
+        <result column="main_product" property="mainProduct" />
+        <result column="contacts" property="contacts" />
+        <result column="mobile" property="mobile" />
+        <result column="phone" property="phone" />
+        <result column="wangwang" property="wangwang" />
+        <result column="qq" property="qq" />
+        <result column="spare_contacts" property="spareContacts" />
+        <result column="spare_mobile" property="spareMobile" />
+        <result column="spare_phone" property="sparePhone" />
+        <result column="spare_qq" property="spareQq" />
+        <result column="sort" property="sort" />
+        <result column="certificate" property="certificate" />
+        <result column="remark" property="remark" />
+        <result column="ext_json" property="extJson" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_by" property="createBy" />
+        <result column="create_id" property="createId" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_id" property="updateId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="smsProducerVo">
+          SELECT
+	p.producer_id,
+	p.NAME,
+	p.CODE,
+	p.address,
+	p.type,
+	p.platform,
+	p.STATUS,
+	p.pay_type,
+	p.max_money,
+	p.bank,
+	p.bank_address,
+	p.bank_user,
+	p.account,
+	p.before_pay,
+	p.credit_day,
+	p.site,
+	p.is_invoice,
+	p.is_free_tax,
+	p.total_price,
+	p.delivery_day,
+	p.quality,
+	p.main_product,
+	p.contacts,
+	p.mobile,
+	p.phone,
+	p.wangwang,
+	p.qq,
+	p.spare_contacts,
+	p.spare_mobile,
+	p.spare_phone,
+	p.spare_qq,
+	p.sort,
+	p.certificate,
+	p.remark,
+	p.ext_json,
+	p.create_time,
+	p.update_time,
+	p.create_by,
+	p.create_id,
+	p.update_by,
+	p.update_id
+FROM
+	sms_producer p
+    </sql>
+
+<!--    &lt;!&ndash;新增供应商&ndash;&gt;-->
+<!--    <insert id="saveProducer" parameterType="org.jeecg.modules.sms.entity.SmsProducer" useGeneratedKeys="true" keyProperty="producer_id">-->
+<!--        insert into sms_producer(-->
+<!--        <if test="name != null and name != ''">name,</if>-->
+<!--        <if test="code != null and code != ''">code,</if>-->
+<!--        <if test="address != null and address != ''">address,</if>-->
+<!--        <if test="type != null">type,</if>-->
+<!--        <if test="platform != null and platform != ''">platform,</if>-->
+<!--        <if test="status != null and status != 0">status,</if>-->
+<!--        <if test="payType != null and payType != 0">pay_type,</if>-->
+<!--        <if test="maxMoney != null and maxMoney != 0">max_money,</if>-->
+<!--        <if test="bank != null and bank != ''">bank,</if>-->
+<!--        <if test="bankAddress != null and bankAddress != ''">bank_address,</if>-->
+<!--        <if test="bankUser != null and bankUser != ''">bank_user,</if>-->
+<!--        <if test="account != null and account != ''">account,</if>-->
+<!--        <if test="beforePay != null and beforePay != ''">before_pay,</if>-->
+<!--        <if test="creditDay != null">credit_day,</if>-->
+<!--        <if test="site != null and site != ''">site,</if>-->
+<!--        <if test="isInvoice != null">is_invoice,</if>-->
+<!--        <if test="isFreeTax != null">is_free_tax,</if>-->
+<!--        <if test="totalPrice != null and totalPrice != 0">total_price,</if>-->
+<!--        <if test="deliveryDay != null and deliveryDay != ''">delivery_day,</if>-->
+<!--        <if test="quality != null">quality,</if>-->
+<!--        <if test="mainProduct != null and mainProduct != ''">main_product,</if>-->
+<!--        <if test="contacts != null and contacts != ''">contacts,</if>-->
+<!--        <if test="mobile != null and mobile != ''">mobile,</if>-->
+<!--        <if test="phone != null and phone != ''">phone,</if>-->
+<!--        <if test="wangwang != null and wangwang != ''">wangwang,</if>-->
+<!--        <if test="qq != null and qq != ''">qq,</if>-->
+<!--        <if test="spareContacts != null and spareContacts != ''">spare_contacts,</if>-->
+<!--        <if test="spareMobile != null and spareMobile != ''">spare_mobile,</if>-->
+<!--        <if test="sparePhone != null and sparePhone != ''">spare_phone,</if>-->
+<!--        <if test="spareQq != null and spareQq != ''">spare_qq,</if>-->
+<!--        <if test="sort != null and sort != 0">sort,</if>-->
+<!--        <if test="certificate != null and certificate != ''">certificate,</if>-->
+<!--        <if test="remark != null and remark != ''">remark,</if>-->
+<!--        <if test="extJson != null and extJson != ''">ext_json,</if>-->
+<!--        <if test="createTime != null and createTime != ''">create_time,</if>-->
+<!--        <if test="updateTime != null and updateTime != ''">update_time,</if>-->
+<!--        <if test="createBy != null and createBy != ''">create_by,</if>-->
+<!--        <if test="createId != null and createId != 0">create_id,</if>-->
+<!--        <if test="updateBy != null and updateBy != ''">update_by,</if>-->
+<!--        <if test="updateId != null and updateId != 0">update_id,</if>-->
+<!--        )values(-->
+<!--        <if test="name != null and name != ''">#{name},</if>-->
+<!--        <if test="code != null and code != ''">#{code},</if>-->
+<!--        <if test="address != null and address != ''">#{address},</if>-->
+<!--        <if test="type != null">#{type},</if>-->
+<!--        <if test="platform != null and platform != ''">#{platform},</if>-->
+<!--        <if test="status != null and status != 0">#{status},</if>-->
+<!--        <if test="payType != null and payType != 0">#{payType},</if>-->
+<!--        <if test="maxMoney != null and maxMoney != 0">#{maxMoney},</if>-->
+<!--        <if test="bank != null and bank != ''">#{bank},</if>-->
+<!--        <if test="bankAddress != null and bankAddress != ''">#{bankAddress},</if>-->
+<!--        <if test="bankUser != null and bankUser != ''">#{bankUser},</if>-->
+<!--        <if test="account != null and account != ''">#{account},</if>-->
+<!--        <if test="beforePay != null and beforePay != ''">#{beforePay},</if>-->
+<!--        <if test="creditDay != null">#{creditDay},</if>-->
+<!--        <if test="site != null and site != ''">#{site},</if>-->
+<!--        <if test="isInvoice != null">#{isInvoice},</if>-->
+<!--        <if test="isFreeTax != null">#{isFreeTax},</if>-->
+<!--        <if test="totalPrice != null and totalPrice != 0">#{totalPrice},</if>-->
+<!--        <if test="deliveryDay != null and deliveryDay != ''">#{deliveryDay},</if>-->
+<!--        <if test="quality != null">#{quality},</if>-->
+<!--        <if test="mainProduct != null and mainProduct != ''">#{mainProduct},</if>-->
+<!--        <if test="contacts != null and contacts != ''">#{contacts},</if>-->
+<!--        <if test="mobile != null and mobile != ''">#{mobile},</if>-->
+<!--        <if test="phone != null and phone != ''">#{phone},</if>-->
+<!--        <if test="wangwang != null and wangwang != ''">#{wangwang},</if>-->
+<!--        <if test="qq != null and qq != ''">#{qq},</if>-->
+<!--        <if test="spareContacts != null and spareContacts != ''">#{spareContacts},</if>-->
+<!--        <if test="spareMobile != null and spareMobile != ''">#{spareMobile},</if>-->
+<!--        <if test="sparePhone != null and sparePhone != ''">#{sparePhone},</if>-->
+<!--        <if test="spareQq != null and spareQq != ''">#{spareQq},</if>-->
+<!--        <if test="sort != null and sort != 0">#{sort},</if>-->
+<!--        <if test="certificate != null and certificate != ''">#{certificate},</if>-->
+<!--        <if test="remark != null and remark != ''">#{remark},</if>-->
+<!--        <if test="extJson != null and extJson != ''">#{extJson},</if>-->
+<!--        <if test="createTime != null and createTime != ''">#{createTime},</if>-->
+<!--        <if test="updateTime != null and updateTime != ''">#{updateTime},</if>-->
+<!--        <if test="createBy != null and createBy != ''">#{createBy},</if>-->
+<!--        <if test="createId != null and createId != 0">#{createId},</if>-->
+<!--        <if test="updateBy != null and updateBy != ''">#{updateBy},</if>-->
+<!--        <if test="updateId != null and updateId != 0">#{updateId},</if>-->
+<!--        )-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash;查询&ndash;&gt;-->
+<!--    <select id="selectProducerList" parameterType="org.jeecg.modules.sms.entity.SmsProducer" resultMap="SmsProducerMap">-->
+<!--        <include refid="smsProducerVo"/>-->
+<!--        where p.create_id = #{createId}-->
+<!--        <if test="name != null and name != 0">-->
+<!--            AND p.name = #{name}-->
+<!--        </if>-->
+<!--    </select>-->
+</mapper>

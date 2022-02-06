@@ -1,30 +1,23 @@
 <template>
   <global-layout @dynamicRouterShow="dynamicRouterShow">
     <!-- update-begin- author:sunjianlei --- date:20191009 --- for: 提升右键菜单的层级 -->
-    <contextmenu :itemList="menuItemList" :visible.sync="menuVisible" style="z-index: 9999;" @select="onMenuSelect"/>
+    <contextmenu :itemList="menuItemList" :visible.sync="menuVisible" style="z-index: 9999;" @select="onMenuSelect" />
     <!-- update-end- author:sunjianlei --- date:20191009 --- for: 提升右键菜单的层级 -->
-    <a-tabs
-      @contextmenu.native="e => onContextmenu(e)"
-      v-if="multipage"
-      :active-key="activePage"
-      class="tab-layout-tabs"
-      style="height:52px"
-      :hide-add="true"
-      type="editable-card"
-      @change="changePage"
-      @tabClick="tabCallBack"
-      @edit="editPage">
-      <a-tab-pane :id="page.fullPath" :key="page.fullPath" v-for="page in pageList" :closable="!(page.meta.title=='首页')">
+    <a-tabs @contextmenu.native="e => onContextmenu(e)" v-if="multipage" :active-key="activePage"
+      class="tab-layout-tabs" style="height:52px" :hide-add="true" type="editable-card" @change="changePage"
+      @tabClick="tabCallBack" @edit="editPage">
+      <a-tab-pane :id="page.fullPath" :key="page.fullPath" v-for="page in pageList"
+        :closable="!(page.meta.title=='首页')">
         <span slot="tab" :pagekey="page.fullPath">{{ page.meta.title }}</span>
       </a-tab-pane>
     </a-tabs>
     <div style="margin: 12px 12px 0;">
       <!-- update-begin-author:taoyan date:20201221 for:此处删掉transition标签 不知道为什么加上后 页面路由切换的时候即1及菜单切到2及菜单的时候 两个菜单页面会同时出现300-500秒左右 -->
       <keep-alive v-if="multipage">
-        <router-view v-if="reloadFlag"/>
+        <router-view v-if="reloadFlag" />
       </keep-alive>
       <template v-else>
-        <router-view v-if="reloadFlag"/>
+        <router-view v-if="reloadFlag" />
       </template>
       <!-- update-end-author:taoyan date:20201221 for:此处删掉transition标签 不知道为什么加上后 页面路由切换的时候即1及菜单切到2及菜单的时候 两个菜单页面会同时出现300-500秒左右 -->
     </div>
@@ -34,10 +27,17 @@
 <script>
   import GlobalLayout from '@/components/page/GlobalLayout'
   import Contextmenu from '@/components/menu/Contextmenu'
-  import { mixin, mixinDevice } from '@/utils/mixin.js'
-  import { triggerWindowResizeEvent } from '@/utils/util'
+  import {
+    mixin,
+    mixinDevice
+  } from '@/utils/mixin.js'
+  import {
+    triggerWindowResizeEvent
+  } from '@/utils/util'
   import Vue from 'vue'
-  import { CACHE_INCLUDED_ROUTES } from '@/store/mutation-types'
+  import {
+    CACHE_INCLUDED_ROUTES
+  } from '@/store/mutation-types'
 
   const indexKey = '/dashboard/analysis'
 
@@ -54,19 +54,34 @@
         linkList: [],
         activePage: '',
         menuVisible: false,
-        menuItemList: [
-          { key: '4', icon: 'reload', text: '刷 新' },
-          { key: '1', icon: 'arrow-left', text: '关闭左侧' },
-          { key: '2', icon: 'arrow-right', text: '关闭右侧' },
-          { key: '3', icon: 'close', text: '关闭其它' }
+        menuItemList: [{
+            key: '4',
+            icon: 'reload',
+            text: '刷 新'
+          },
+          {
+            key: '1',
+            icon: 'arrow-left',
+            text: '关闭左侧'
+          },
+          {
+            key: '2',
+            icon: 'arrow-right',
+            text: '关闭右侧'
+          },
+          {
+            key: '3',
+            icon: 'close',
+            text: '关闭其它'
+          }
         ],
-        reloadFlag:true
+        reloadFlag: true
       }
     },
     /* update_begin author:wuxianquan date:20190828 for: 关闭当前tab页，供子页面调用 ->望菜单能配置外链，直接弹出新页面而不是嵌入iframe #428 */
-    provide(){
-      return{
-        closeCurrent:this.closeCurrent
+    provide() {
+      return {
+        closeCurrent: this.closeCurrent
       }
     },
     /* update_end author:wuxianquan date:20190828 for: 关闭当前tab页，供子页面调用->望菜单能配置外链，直接弹出新页面而不是嵌入iframe #428 */
@@ -91,25 +106,24 @@
       this.linkList.push(currentRoute.fullPath)
       this.activePage = currentRoute.fullPath
     },
-    mounted() {
-    },
+    mounted() {},
     watch: {
-      '$route': function(newRoute) {
+      '$route': function (newRoute) {
         //console.log("新的路由",newRoute)
         this.activePage = newRoute.fullPath
         if (!this.multipage) {
           this.linkList = [newRoute.fullPath]
-          this.pageList = [Object.assign({},newRoute)]
-        // update-begin-author:taoyan date:20200211 for: TASK #3368 【路由缓存】首页的缓存设置有问题，需要根据后台的路由配置来实现是否缓存
-        } else if(indexKey==newRoute.fullPath) {
+          this.pageList = [Object.assign({}, newRoute)]
+          // update-begin-author:taoyan date:20200211 for: TASK #3368 【路由缓存】首页的缓存设置有问题，需要根据后台的路由配置来实现是否缓存
+        } else if (indexKey == newRoute.fullPath) {
           //首页时 判断是否缓存 没有缓存 刷新之
           if (newRoute.meta.keepAlive === false) {
             this.routeReload()
           }
-        // update-end-author:taoyan date:20200211 for: TASK #3368 【路由缓存】首页的缓存设置有问题，需要根据后台的路由配置来实现是否缓存
-        }else if (this.linkList.indexOf(newRoute.fullPath) < 0) {
+          // update-end-author:taoyan date:20200211 for: TASK #3368 【路由缓存】首页的缓存设置有问题，需要根据后台的路由配置来实现是否缓存
+        } else if (this.linkList.indexOf(newRoute.fullPath) < 0) {
           this.linkList.push(newRoute.fullPath)
-          this.pageList.push(Object.assign({},newRoute))
+          this.pageList.push(Object.assign({}, newRoute))
           //// update-begin-author:sunjianlei date:20200103 for: 如果新增的页面配置了缓存路由，那么就强制刷新一遍 #842
           // if (newRoute.meta.keepAlive) {
           //   this.routeReload()
@@ -118,10 +132,12 @@
         } else if (this.linkList.indexOf(newRoute.fullPath) >= 0) {
           let oldIndex = this.linkList.indexOf(newRoute.fullPath)
           let oldPositionRoute = this.pageList[oldIndex]
-          this.pageList.splice(oldIndex, 1, Object.assign({},newRoute,{meta:oldPositionRoute.meta}))
+          this.pageList.splice(oldIndex, 1, Object.assign({}, newRoute, {
+            meta: oldPositionRoute.meta
+          }))
         }
       },
-      'activePage': function(key) {
+      'activePage': function (key) {
         let index = this.linkList.lastIndexOf(key)
         let waitRouter = this.pageList[index]
         // 【TESTA-523】修复：不允许重复跳转路由异常
@@ -130,8 +146,8 @@
         }
         this.changeTitle(waitRouter.meta.title)
       },
-      'multipage': function(newVal) {
-        if(this.reloadFlag){
+      'multipage': function (newVal) {
+        if (this.reloadFlag) {
           if (!newVal) {
             this.linkList = [this.$route.fullPath]
             this.pageList = [this.$route]
@@ -165,7 +181,7 @@
 
       // update-begin-author:sunjianlei date:20200120 for: 动态更改页面标题
       changeTitle(title) {
-        let projectTitle = "Jeecg-Boot 企业级低代码平台"
+        let projectTitle = "叁木森管理平台"
         // 首页特殊处理
         if (this.$route.path === indexKey) {
           document.title = projectTitle
@@ -181,10 +197,10 @@
       tabCallBack() {
         this.$nextTick(() => {
           //update-begin-author:taoyan date: 20201211 for:【新版】online报错 JT-100
-         setTimeout(()=>{
-           //省市区组件里面给window绑定了个resize事件 导致切换页面的时候触发了他的resize，但是切换页面，省市区组件还没被销毁前就触发了该事件，导致控制台报错，加个延迟
-           triggerWindowResizeEvent()
-         },20)
+          setTimeout(() => {
+            //省市区组件里面给window绑定了个resize事件 导致切换页面的时候触发了他的resize，但是切换页面，省市区组件还没被销毁前就触发了该事件，导致控制台报错，加个延迟
+            triggerWindowResizeEvent()
+          }, 20)
           //update-end-author:taoyan date: 20201211 for:【新版】online报错 JT-100
         })
       },
@@ -200,7 +216,7 @@
           this.$message.warning('这是最后一页，不能再关闭了啦')
           return
         }
-        console.log("this.pageList ",this.pageList );
+        console.log("this.pageList ", this.pageList);
         let removeRoute = this.pageList.filter(item => item.fullPath == key)
         this.pageList = this.pageList.filter(item => item.fullPath !== key)
         let index = this.linkList.indexOf(key)
@@ -215,7 +231,7 @@
           let componentName = removeRoute[0].meta.componentName
           console.log("key: ", key);
           console.log("componentName: ", componentName);
-          if(cacheRouterArray.includes(componentName)){
+          if (cacheRouterArray.includes(componentName)) {
             cacheRouterArray.splice(cacheRouterArray.findIndex(item => item === componentName), 1)
             Vue.ls.set(CACHE_INCLUDED_ROUTES, cacheRouterArray)
           }
@@ -246,7 +262,8 @@
           return null
         }
         let pageKey = target.getAttribute('pagekey')
-        pageKey = pageKey || (target.previousElementSibling ? target.previousElementSibling.getAttribute('pagekey') : null)
+        pageKey = pageKey || (target.previousElementSibling ? target.previousElementSibling.getAttribute('pagekey') :
+          null)
         return pageKey || (target.firstElementChild ? this.getPageKey(target.firstElementChild, ++depth) : null)
       },
       onMenuSelect(key, target) {
@@ -269,13 +286,13 @@
         }
       },
       /* update_begin author:wuxianquan date:20190828 for: 关闭当前tab页，供子页面调用->望菜单能配置外链，直接弹出新页面而不是嵌入iframe #428 */
-      closeCurrent(){
+      closeCurrent() {
         this.remove(this.activePage);
       },
       /* update_end author:wuxianquan date:20190828 for: 关闭当前tab页，供子页面调用->望菜单能配置外链，直接弹出新页面而不是嵌入iframe #428 */
       closeOthers(pageKey) {
         let index = this.linkList.indexOf(pageKey)
-        if (pageKey == indexKey || pageKey.indexOf('?ticke=')>=0) {
+        if (pageKey == indexKey || pageKey.indexOf('?ticke=') >= 0) {
           this.linkList = this.linkList.slice(index, index + 1)
           this.pageList = this.pageList.slice(index, index + 1)
           this.activePage = this.linkList[0]
@@ -312,12 +329,16 @@
         }
       },
       //update-begin-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
-      dynamicRouterShow(key,title){
+      dynamicRouterShow(key, title) {
         let keyIndex = this.linkList.indexOf(key)
-        if(keyIndex>=0){
+        if (keyIndex >= 0) {
           let currRouter = this.pageList[keyIndex]
-          let meta = Object.assign({},currRouter.meta,{title:title})
-          this.pageList.splice(keyIndex, 1, Object.assign({},currRouter,{meta:meta}))
+          let meta = Object.assign({}, currRouter.meta, {
+            title: title
+          })
+          this.pageList.splice(keyIndex, 1, Object.assign({}, currRouter, {
+            meta: meta
+          }))
           if (key === this.activePage) {
             this.changeTitle(title)
           }
@@ -326,18 +347,18 @@
       //update-end-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
 
       //update-begin-author:taoyan date:20191008 for:路由刷新
-      routeReload(){
+      routeReload() {
         this.reloadFlag = false
         let ToggleMultipage = "ToggleMultipage"
-        this.$store.dispatch(ToggleMultipage,false)
-        this.$nextTick(()=>{
-          this.$store.dispatch(ToggleMultipage,true)
+        this.$store.dispatch(ToggleMultipage, false)
+        this.$nextTick(() => {
+          this.$store.dispatch(ToggleMultipage, true)
           this.reloadFlag = true
         })
       },
       //update-end-author:taoyan date:20191008 for:路由刷新
       //新增一个返回方法
-      excuteCallback(callback){
+      excuteCallback(callback) {
         callback()
       },
     }
@@ -345,7 +366,6 @@
 </script>
 
 <style lang="less">
-
   /*
  * The following styles are auto-applied to elements with
  * transition="page-transition" when their visibility is toggled
@@ -416,15 +436,14 @@
 
   }
 
-  .tab-layout-tabs.ant-tabs.ant-tabs-card > .ant-tabs-bar {
+  .tab-layout-tabs.ant-tabs.ant-tabs-card>.ant-tabs-bar {
     .ant-tabs-tab {
       border: none !important;
       border-bottom: 1px solid transparent !important;
     }
+
     .ant-tabs-tab-active {
-      border-color: @primary-color!important;
+      border-color: @primary-color !important;
     }
   }
-
-
 </style>

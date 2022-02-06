@@ -1,17 +1,24 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-01 23:37:13
+ * @LastEditTime: 2022-02-02 13:35:40
+ * @LastEditors: your name
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /ant-design-vue-jeecg/src/components/page/GlobalFooter.vue
+-->
 <template>
   <div class="footer">
     <div class="links">
-      <a href="http://www.jeecg.com" target="_blank">JEECG 首页</a>
+      <a href="/" target="_blank">首页</a>
       <a href="https://github.com/zhangdaiscott/jeecg-boot" target="_blank">
-        <a-icon type="github"/>
+        <a-icon type="github" />
       </a>
       <a href="https://ant.design/">Ant Design</a>
       <a href="https://vuecomponent.github.io/ant-design-vue/docs/vue/introduce-cn/">Vue Antd</a>
     </div>
     <div class="copyright">
-      Copyright
-      <a-icon type="copyright"/>
-      2019 <span>JEECG开源社区 出品</span>
+      Copyright &copy; 2022 Fujian Sanmusen Network Technology Co.,
+      Ltd.
     </div>
   </div>
 </template>
@@ -43,6 +50,7 @@
         }
       }
     }
+
     .copyright {
       color: rgba(0, 0, 0, .45);
       font-size: 14px;

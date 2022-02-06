@@ -12,7 +12,7 @@
           </a-col>
           <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
             <a-col :md="6" :sm="24">
-             <a-button type="primary" @click="searchQuery" icon="search" style="margin-left: 18px">查询</a-button>
+              <a-button type="primary" @click="searchQuery" icon="search" style="margin-left: 18px">查询</a-button>
               <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
             </a-col>
           </span>
@@ -28,12 +28,12 @@
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
           <a-menu-item key="1" @click="batchDel">
-            <a-icon type="delete"/>
+            <a-icon type="delete" />
             取消关联
           </a-menu-item>
         </a-menu>
         <a-button style="margin-left: 8px"> 批量操作
-          <a-icon type="down"/>
+          <a-icon type="down" />
         </a-button>
       </a-dropdown>
     </div>
@@ -46,31 +46,24 @@
         <a style="margin-left: 24px" @click="onClearSelected">清空</a>
       </div>
 
-      <a-table
-        ref="table"
-        size="middle"
-        bordered
-        rowKey="id"
-        :columns="columns"
-        :dataSource="dataSource"
-        :pagination="ipagination"
-        :loading="loading"
-        :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-        @change="handleTableChange">
+      <a-table ref="table" size="middle" bordered rowKey="id" :columns="columns" :dataSource="dataSource"
+        :pagination="ipagination" :loading="loading"
+        :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}" @change="handleTableChange">
 
 
 
         <span slot="action" slot-scope="text, record">
           <a @click="handleEdit(record)">编辑</a>
 
-          <a-divider type="vertical"/>
+          <a-divider type="vertical" />
 
           <a-dropdown>
             <a class="ant-dropdown-link">
-              更多 <a-icon type="down"/>
+              更多
+              <a-icon type="down" />
             </a>
             <a-menu slot="overlay">
-                <a-menu-item>
+              <a-menu-item>
                 <a href="javascript:;" @click="handleDeptRole(record)">部门角色</a>
               </a-menu-item>
 
@@ -100,8 +93,14 @@
 </template>
 
 <script>
-  import {JeecgListMixin} from '@/mixins/JeecgListMixin'
-  import {getAction, postAction, deleteAction} from '@/api/manage'
+  import {
+    JeecgListMixin
+  } from '@/mixins/JeecgListMixin'
+  import {
+    getAction,
+    postAction,
+    deleteAction
+  } from '@/api/manage'
   import SelectUserModal from './SelectUserModal'
   import UserModal from './UserModal'
   import DeptRoleUserModal from './DeptRoleUserModal'
@@ -148,20 +147,23 @@
           {
             title: '操作',
             dataIndex: 'action',
-            scopedSlots: {customRender: 'action'},
+            scopedSlots: {
+              customRender: 'action'
+            },
             align: "center",
             width: 150
-          }],
+          }
+        ],
         url: {
           list: "/sys/user/departUserList",
           edit: "/sys/user/editSysDepartWithUser",
           delete: "/sys/user/deleteUserInDepart",
           deleteBatch: "/sys/user/deleteUserInDepartBatch",
+          getUserById: "/sys/api/getUserById",
         }
       }
     },
-    created() {
-    },
+    created() {},
 
     methods: {
       searchReset() {
@@ -178,7 +180,7 @@
           this.ipagination.current = 1;
         }
         //if (this.currentDeptId === '') return;
-        let params = this.getQueryParams();//查询条件
+        let params = this.getQueryParams(); //查询条件
         params.depId = this.currentDeptId;
         getAction(this.url.list, params).then((res) => {
           if (res.success && res.result) {
@@ -212,7 +214,10 @@
             title: "确认取消",
             content: "是否取消用户与选中部门的关联?",
             onOk: function () {
-              deleteAction(that.url.deleteBatch, {depId: that.currentDeptId, userIds: ids}).then((res) => {
+              deleteAction(that.url.deleteBatch, {
+                depId: that.currentDeptId,
+                userIds: ids
+              }).then((res) => {
                 if (res.success) {
                   that.$message.success("删除用户与选中部门关系成功！");
                   that.loadData();
@@ -236,16 +241,19 @@
         }
 
         var that = this;
-        deleteAction(that.url.delete, {depId: this.currentDeptId, userId: id}).then((res) => {
+        deleteAction(that.url.delete, {
+          depId: this.currentDeptId,
+          userId: id
+        }).then((res) => {
           if (res.success) {
             that.$message.success("删除用户与选中部门关系成功！");
-            if (this.selectedRowKeys.length>0){
-               for(let i =0; i<this.selectedRowKeys.length;i++){
-                   if (this.selectedRowKeys[i] == id){
-                     this.selectedRowKeys.splice(i,1);
-                     break;
-                   }
-               }
+            if (this.selectedRowKeys.length > 0) {
+              for (let i = 0; i < this.selectedRowKeys.length; i++) {
+                if (this.selectedRowKeys[i] == id) {
+                  this.selectedRowKeys.splice(i, 1);
+                  break;
+                }
+              }
             }
             that.loadData();
           } else {
@@ -271,7 +279,7 @@
         return true;
       },
       handleAddUserDepart() {
-        if (this.currentDeptId == '' ) {
+        if (this.currentDeptId == '') {
           this.$message.error("请选择一个部门!")
         } else {
           this.$refs.selectUserModal.visible = true;
@@ -289,12 +297,20 @@
         } else {
           this.$refs.modalForm.departDisabled = true;
           //初始化负责部门
-          this.$refs.modalForm.nextDepartOptions=[{value:this.currentDept.key,label:this.currentDept.title}]
+          this.$refs.modalForm.nextDepartOptions = [{
+            value: this.currentDept.key,
+            label: this.currentDept.title
+          }]
           this.$refs.modalForm.title = "新增";
-          this.$refs.modalForm.edit({activitiSync:'1',userIdentity:1,selecteddeparts:this.currentDeptId})
+          this.$refs.modalForm.edit({
+            activitiSync: '1',
+            userIdentity: 1,
+            selecteddeparts: this.currentDeptId
+          })
         }
       },
       selectOK(data) {
+        debugger
         let params = {};
         params.depId = this.currentDeptId;
         params.userIdList = [];
@@ -305,17 +321,18 @@
         postAction(this.url.edit, params).then((res) => {
           if (res.success) {
             this.$message.success(res.message);
+
             this.loadData();
           } else {
             this.$message.warning(res.message);
           }
         })
       },
-      handleDeptRole(record){
-        if(this.currentDeptId != ''){
-          this.$refs.deptRoleUser.add(record,this.currentDeptId);
+      handleDeptRole(record) {
+        if (this.currentDeptId != '') {
+          this.$refs.deptRoleUser.add(record, this.currentDeptId);
           this.$refs.deptRoleUser.title = "部门角色分配";
-        }else{
+        } else {
           this.$message.warning("请先选择一个部门!");
         }
       }
