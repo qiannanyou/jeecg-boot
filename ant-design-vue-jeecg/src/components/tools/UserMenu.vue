@@ -177,7 +177,7 @@
       ...mapActions(["Logout"]),
       ...mapGetters(["nickname", "avatar", "userInfo"]),
       getAvatar() {
-        if (this.avatar().length > 0) {
+        if (this.avatar() && this.avatar().length > 0) {
           return getFileAccessHttpUrl(this.avatar())
         }
         return ''

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-02-03 20:29:51
- * @LastEditTime: 2022-02-05 23:39:02
+ * @LastEditTime: 2022-02-07 15:54:28
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /ant-design-vue-jeecg/src/views/sms/modules/SupplierModal.vue
@@ -181,17 +181,17 @@
         </a-col>
         <a-col :span="col">
           <a-form-model-item label="状态" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="status">
-            <a-switch default-checked v-model="model.status" />
+            <a-switch :defaultChecked="true" :checked="model.status===1?true:false" />
           </a-form-model-item>
         </a-col>
         <a-col :span="col">
           <a-form-model-item label="是否开发票" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="isInvoice">
-            <a-switch v-model="model.isInvoice" />
+            <a-switch :checked="model.isInvoice===1?true:false" />
           </a-form-model-item>
         </a-col>
         <a-col :span="col">
           <a-form-model-item label="是否含税" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="isFreeTax">
-            <a-switch v-model="model.isFreeTax" />
+            <a-switch :checked="model.isFreeTax===1?true:false" />
           </a-form-model-item>
         </a-col>
       </a-form-model>

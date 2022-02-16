@@ -1,6 +1,5 @@
 package org.jeecg.modules.sms.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.jeecg.modules.sms.entity.SmsProducer;
 
@@ -39,10 +38,17 @@ public interface ISmsProducerService extends IService<SmsProducer> {
     public int updateProducer(SmsProducer smsProducer);
 
     /**
-     * 更新供应商信息
+     * 删除供应商信息
      *
      * @param producerId 供应商ID
      * @return 结果
      */
-    public int deleteProducer(Long producerId);
+    public boolean deleteProducer(String producerId);
+
+    /**
+     * 批量删除供应商
+     * @param producerIds
+     * @return
+     */
+    public boolean deleteBatchProducers(String producerIds);
 }

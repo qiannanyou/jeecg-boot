@@ -4,9 +4,13 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.beust.jcommander.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.SystemUtils;
+import org.apache.shiro.SecurityUtils;
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.system.vo.LoginUser;
 import org.jeecg.modules.sms.entity.SmsProducer;
 import org.jeecg.modules.sms.service.ISmsProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +80,10 @@ public class PurchasingManageController {
         Result<IPage<SmsProducer>> result = new Result<IPage<SmsProducer>>();
         String search = req.getParameter("search");
         Page<SmsProducer> page = new Page<SmsProducer>(pageNo, pageSize);
+        LoginUser sysUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
+        String userId = sysUser.getId();
         QueryWrapper<SmsProducer> queryWrapper = new QueryWrapper<SmsProducer>();
+        queryWrapper.lambda().eq(SmsProducer::getCreateId, userId);
         if (StringUtils.isNotEmpty(search)) {
             queryWrapper.like("name" ,search);
             queryWrapper.or().like("code",search);
@@ -87,6 +94,12 @@ public class PurchasingManageController {
         return result;
     }
 
+    /*
+     * 修改供应商
+     * @param [producer]
+     * @return 
+     * @Author: ltt
+     */
     @PostMapping("/edit")
     public Result<String> producerUpdate(@RequestBody SmsProducer producer){
         Result<String> result = new Result<>();
@@ -101,4 +114,35 @@ public class PurchasingManageController {
         }
         return result;
     }
+
+    /*
+     * 删除供应商
+     * @param [id]
+     * @return 
+     * @Author: ltt
+     */
+    @DeleteMapping("/delete")
+    public Result<?> producerDelete(@RequestParam(name="id",required=true) String id){
+        boolean b = smsProducerService.deleteProducer(id);
+        if (b){
+            return Result.ok("删除供应商成功");
+        }
+        return Result.error("删除供应商失败");
+    }
+    
+    /*
+     * 批量删除供应商
+     * @param [ids]
+     * @return 
+     * @Author: ltt
+     */
+    @DeleteMapping("/deleteBatch")
+    public Result<?> deleteBatch(@RequestParam(name="ids",required=true) String ids){
+        boolean b = smsProducerService.deleteBatchProducers(ids);
+        if (b) {
+            return Result.ok("批量删除供应商成功");
+        }
+        return Result.error("批量删除供应商失败");
+    }
+
 }
