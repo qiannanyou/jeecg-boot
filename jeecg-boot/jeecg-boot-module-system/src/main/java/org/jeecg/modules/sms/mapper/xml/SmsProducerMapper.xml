@@ -46,6 +46,7 @@
         <result column="create_id" property="createId" />
         <result column="update_by" property="updateBy" />
         <result column="update_id" property="updateId" />
+        <result column="cover" property="cover" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -91,7 +92,8 @@
 	p.create_by,
 	p.create_id,
 	p.update_by,
-	p.update_id
+	p.update_id,
+	p.cover
 FROM
 	sms_producer p
     </sql>

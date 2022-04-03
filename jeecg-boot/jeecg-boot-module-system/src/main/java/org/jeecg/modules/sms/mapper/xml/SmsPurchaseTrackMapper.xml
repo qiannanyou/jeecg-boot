@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.sms.mapper.SmsPurchaseTrackMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.sms.entity.SmsPurchaseTrackDo">
+        <id column="track_id" property="trackId" />
+        <result column="purchase_id" property="purchaseId" />
+        <result column="good_id" property="goodId" />
+        <result column="express_no" property="expressNo" />
+        <result column="logistics_name" property="logisticsName" />
+        <result column="logistics_id" property="logisticsId" />
+        <result column="track_status" property="trackStatus" />
+        <result column="track_num" property="trackNum" />
+        <result column="track_info" property="trackInfo" />
+        <result column="pay_type" property="payType" />
+        <result column="is_recv" property="isRecv" />
+        <result column="recv_date" property="recvDate" />
+        <result column="recv_user_id" property="recvUserId" />
+        <result column="weight" property="weight" />
+        <result column="purchase_no" property="purchaseNo" />
+        <result column="purchase_url" property="purchaseUrl" />
+        <result column="purchase_platform" property="purchasePlatform" />
+        <result column="purchase_platform_id" property="purchasePlatformId" />
+        <result column="cross_border_no" property="crossBorderNo" />
+        <result column="cover" property="cover" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_by" property="createBy" />
+        <result column="create_id" property="createId" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_id" property="updateId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        track_id, purchase_id, good_id, express_no, logistics_name, logistics_id, track_status, track_num, track_info, pay_type, is_recv, recv_date, recv_user_id, weight, purchase_no, purchase_url, purchase_platform, purchase_platform_id, cross_border_no, cover, remark, create_time, update_time, create_by, create_id, update_by, update_id
+    </sql>
+
+</mapper>

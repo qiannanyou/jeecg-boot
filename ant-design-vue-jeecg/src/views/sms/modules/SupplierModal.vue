@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2022-02-03 20:29:51
- * @LastEditTime: 2022-02-07 15:54:28
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: /ant-design-vue-jeecg/src/views/sms/modules/SupplierModal.vue
--->
 <template>
   <a-drawer :title="title" :maskClosable="true" :width="drawerWidth" placement="right" :closable="true"
     @close="handleCancel" :visible="visible" style="height: 100%;overflow: auto;padding-bottom: 53px;">
@@ -39,7 +31,20 @@
         </a-col>
         <a-col :span="col">
           <a-form-model-item label="线上平台" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="platform">
-            <a-input placeholder="请输入线上平台" allowClear v-model="model.platform" />
+            <a-select placeholder="请选择采购平台" v-model="model.platform">
+              <a-select-option :value="1">
+                1688
+              </a-select-option>
+              <a-select-option :value="2">
+                拼多多
+              </a-select-option>
+              <a-select-option :value="3">
+                淘宝
+              </a-select-option>
+              <a-select-option :value="4">
+                其他平台
+              </a-select-option>
+            </a-select>
           </a-form-model-item>
         </a-col>
         <a-col :span="col">
@@ -194,10 +199,16 @@
             <a-switch :checked="model.isFreeTax===1?true:false" />
           </a-form-model-item>
         </a-col>
+        <a-col :span="24">
+          <a-col :span="12">
+            <a-form-model-item label="图片凭证" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="crossBorderNo">
+              <j-upload v-model="model.cover" :number="1" :file-type="'image'"></j-upload>
+            </a-form-model-item>
+          </a-col>
+        </a-col>
       </a-form-model>
     </a-spin>
-
-    <div class="drawer-bootom-buttonx" v-show="!disableSubmit">
+    <div class="drawer-bootom-buttonx" style="float: right;padding-bottom: 20px;" v-show="!disableSubmit">
       <a-popconfirm title="确定放弃编辑？" @confirm="handleCancel" okText="确定" cancelText="取消">
         <a-button style="margin-right: .8rem">取消</a-button>
       </a-popconfirm>
@@ -211,9 +222,12 @@
     purchaseAdd,
     purchaseEdit
   } from "@/api/supplier.js";
+  import JUpload from '@/components/jeecg/JUpload'
   export default {
     name: "SupplierModal",
-    components: {},
+    components: {
+      JUpload,
+    },
     data() {
       return {
         title: "新增供应商",
@@ -222,7 +236,8 @@
         confirmLoading: false,
         drawerWidth: 700,
         model: {
-          status: 1
+          status: 1,
+          code: 'SMS00'
         },
         col: 12,
         labelCol: {

@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2022-02-02 23:37:12
- * @LastEditTime: 2022-02-09 16:24:51
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: /ant-design-vue-jeecg/src/views/sms/purchase/supplier.vue
--->
 <template>
   <a-card :bordered="false">
     <div class="table-page-search-wrapper">
@@ -59,6 +51,18 @@
             @click="copyLink">
             {{model.code}}</a>
         </template>
+        <template slot="cover" slot-scope="text, model">
+          <a-popover placement="right" trigger="hover" v-if="model.cover">
+            <template slot="content">
+              <img :src="getImage(model.cover)" style="max-height: 300px;max-width: 300px" />
+            </template>
+            <img :src="getImage(model.cover)" style="max-height: 60px;max-width: 300px">
+          </a-popover>
+          <img v-else src="@/assets/img-empty.svg" style="max-height: 60px;max-width: 300px" />
+        </template>
+        <template slot="platform" slot-scope="text, model">
+          <span>{{platformOptions[model.platform]}}</span>
+        </template>
       </a-table>
     </div>
     <supplier-modal ref="modalForm" @ok="modalFormOk"></supplier-modal>
@@ -70,6 +74,9 @@
   import {
     purchaseList
   } from "@/api/supplier.js";
+  import {
+    getFileAccessHttpUrl
+  } from '@/api/manage';
   import {
     deleteAction
   } from '../../../api/manage';
@@ -85,6 +92,15 @@
         queryParam: {},
         recycleBinVisible: false,
         columns: [{
+            title: '商品图片',
+            align: "center",
+            width: 200,
+            dataIndex: 'cover',
+            scopedSlots: {
+              customRender: 'cover'
+            },
+          },
+          {
             title: '供应商名称',
             align: "center",
             dataIndex: 'name',
@@ -100,23 +116,17 @@
             },
           },
           {
-            title: '主营商品',
-            align: "center",
-            width: 100,
-            dataIndex: 'mainProduct',
-          },
-          {
             title: '质量',
             align: "center",
             width: 100,
             dataIndex: 'quality',
           },
-          {
-            title: '采购金额/元',
-            align: "center",
-            width: 150,
-            dataIndex: 'totalPrice',
-          },
+          // {
+          //   title: '采购金额/元',
+          //   align: "center",
+          //   width: 150,
+          //   dataIndex: 'totalPrice',
+          // },
           {
             title: '交付周期/天',
             align: "center",
@@ -142,6 +152,9 @@
             width: 100,
             dataIndex: 'platform',
             ellipsis: true,
+            scopedSlots: {
+              customRender: 'platform'
+            },
           },
           {
             title: '网站',
@@ -188,7 +201,13 @@
         url: {
           delete: '/sms/purchase/delete',
           deleteBatch: '/sms/purchase/deleteBatch'
-        }
+        },
+        platformOptions: {
+          '1': '1688',
+          '2': '拼多多',
+          '3': '淘宝',
+          '4': '其他平台',
+        },
       }
     },
     computed: {
@@ -314,7 +333,10 @@
           // 释放内存
           clipboard.destroy()
         })
-      }
+      },
+      getImage(img) {
+        return getFileAccessHttpUrl(img);
+      },
     }
   }
 </script>

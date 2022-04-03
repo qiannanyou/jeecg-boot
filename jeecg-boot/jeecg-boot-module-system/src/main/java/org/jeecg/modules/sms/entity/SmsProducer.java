@@ -237,4 +237,9 @@ public class SmsProducer extends SmsBaseVo {
     @Excel(name="备注",width=15)
     private String remark;
 
+    /**
+     * 产品图片
+     */
+    @Excel(name="cover")
+    private String cover;
 }
